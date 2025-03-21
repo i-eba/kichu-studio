@@ -152,4 +152,29 @@ document.addEventListener('DOMContentLoaded', function() {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
+    
+    // Multiple testimonials handling
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    let activeTestimonialIndex = 0;
+    
+    if (testimonialCards.length > 1) {
+        // Hide all testimonials except the first one
+        for (let i = 1; i < testimonialCards.length; i++) {
+            testimonialCards[i].style.display = 'none';
+        }
+        
+        // Auto-rotate testimonials every 8 seconds
+        setInterval(() => {
+            testimonialCards[activeTestimonialIndex].style.display = 'none';
+            activeTestimonialIndex = (activeTestimonialIndex + 1) % testimonialCards.length;
+            testimonialCards[activeTestimonialIndex].style.display = 'block';
+            testimonialCards[activeTestimonialIndex].style.opacity = '0';
+            
+            // Fade in the new testimonial
+            setTimeout(() => {
+                testimonialCards[activeTestimonialIndex].style.transition = 'opacity 1s';
+                testimonialCards[activeTestimonialIndex].style.opacity = '1';
+            }, 100);
+        }, 8000);
+    }
 });
