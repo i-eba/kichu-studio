@@ -690,6 +690,18 @@ footer {
     color: var(--primary);
 }
 
+.footer-contact a {
+    color: white;
+    opacity: 0.8;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-contact a:hover {
+    opacity: 1;
+    color: var(--primary);
+}
+
 .copyright {
     text-align: center;
     padding-top: 20px;
